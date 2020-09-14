@@ -1,0 +1,21 @@
+#array-container {
+    width: 100%;
+    position: absolute;
+    bottom: 15%;
+}
+
+.array-bar {
+    background-color: olive;
+    display: inline-block;
+    width: 0.5%;
+    margin: 1px;
+}
+
+#btns {
+    background-color: aqua;
+    width: 100%;
+}
+
+.btn {
+    width: 50px;
+}
