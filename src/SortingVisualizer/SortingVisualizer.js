@@ -27,10 +27,9 @@ export default class SortingVisualizer extends React.Component {
 
     handleMergeSort() {
         const animations = getMergeSort(this.state.arr);
+        const arrBars = document.getElementsByClassName('array-bar');
         for (let i = 0; i < animations.length; i++) {
-            const arrBars = document.getElementsByClassName('array-bar');
-            const isComparing = i % 3 != 2;
-            if (isComparing) {
+            if (animations[i][2]) {
                 const [barOneIdx, barTwoIdx] = animations[i];
                 const barOneStyle = arrBars[barOneIdx].style;
                 const barTwoStyle = arrBars[barTwoIdx].style;
@@ -38,24 +37,23 @@ export default class SortingVisualizer extends React.Component {
                 setTimeout(() => {
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
-                }, i * 5);
+                }, i * 10);
             }
             else {
                 setTimeout(() => {
                     const [barOneIdx, newHeight] = animations[i];
                     const barOneStyle = arrBars[barOneIdx].style;
                     barOneStyle.height = `${newHeight}px`;
-                }, i * 5);
+                }, i * 10);
             }
         }
     }
 
     handleSelectionSort() {
         const animations = getSelectionSort(this.state.arr);
+        const arrBars = document.getElementsByClassName('array-bar');
         for (let i = 0; i < animations.length; i++) {
-            const arrBars = document.getElementsByClassName('array-bar');
-            const isComparing = animations[i][2];
-            if (isComparing) {
+            if (animations[i][2]) {
                 const [barOneIdx, barTwoIdx] = animations[i];
                 const barOneStyle = arrBars[barOneIdx].style;
                 const barTwoStyle = arrBars[barTwoIdx].style;
@@ -63,14 +61,14 @@ export default class SortingVisualizer extends React.Component {
                 setTimeout(() => {
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
-                }, i * 2);
+                }, i * 50);
             }
             else {
                 setTimeout(() => {
                     const [barOneIdx, newHeight] = animations[i];
                     const barOneStyle = arrBars[barOneIdx].style;
                     barOneStyle.height = `${newHeight}px`;
-                }, i * 2);
+                }, i * 50);
             }
         }
     }
