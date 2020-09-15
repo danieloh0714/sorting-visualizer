@@ -50,6 +50,31 @@ export default class SortingVisualizer extends React.Component {
         }
     }
 
+    handleSelectionSort() {
+        const animations = getSelectionSort(this.state.arr);
+        for (let i = 0; i < animations.length; i++) {
+            const arrBars = document.getElementsByClassName('array-bar');
+            const isComparing = animations[i][2];
+            if (isComparing) {
+                const [barOneIdx, barTwoIdx] = animations[i];
+                const barOneStyle = arrBars[barOneIdx].style;
+                const barTwoStyle = arrBars[barTwoIdx].style;
+                const color = i % 4 == 0 ? 'pink' : 'olive';
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i * 2);
+            }
+            else {
+                setTimeout(() => {
+                    const [barOneIdx, newHeight] = animations[i];
+                    const barOneStyle = arrBars[barOneIdx].style;
+                    barOneStyle.height = `${newHeight}px`;
+                }, i * 2);
+            }
+        }
+    }
+
     render() {
         const arr = this.state.arr;
 
