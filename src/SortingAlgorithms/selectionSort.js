@@ -1,10 +1,10 @@
-export function getSelectionSort(arr) {
+const getSelectionSort = arr => {
     const animations = [];
     selectionSort(arr, animations);
     return animations;
-}
+};
 
-function selectionSort(arr, animations) {
+const selectionSort = (arr, animations) => {
     for (let i = 0; i < arr.length; i++) {
         let minIdx = i;
         
@@ -20,4 +20,6 @@ function selectionSort(arr, animations) {
         arr[i] = arr[minIdx];
         arr[minIdx] = temp;
     }
-}
+};
+
+export {getSelectionSort};

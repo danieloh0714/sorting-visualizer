@@ -1,10 +1,10 @@
-export function getBubbleSort(arr) {
+const getBubbleSort = arr => {
     const animations = [];
     bubbleSort(arr, animations);
     return animations;
-}
+};
 
-function bubbleSort(arr, animations) {
+const bubbleSort = (arr, animations) => {
     let isOrdered = false;
 
     while (!isOrdered) {
@@ -22,4 +22,6 @@ function bubbleSort(arr, animations) {
             }
         }
     }
-}
+};
+
+export {getBubbleSort};

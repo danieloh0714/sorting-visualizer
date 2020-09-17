@@ -1,20 +1,20 @@
-export function getMergeSort(arr) {
+const getMergeSort = arr => {
     if (arr.length <= 1) return arr;
     const animations = [];
     const auxArr = arr.slice();
     mergeSort(arr, 0, arr.length - 1, auxArr, animations);
     return animations;
-  }
+};
 
-function mergeSort(arr, start, end, auxArr, animations) {
+const mergeSort = (arr, start, end, auxArr, animations) => {
     if (start === end) return;
     const middle = Math.floor((start + end) / 2);
     mergeSort(auxArr, start, middle, arr, animations);
     mergeSort(auxArr, middle + 1, end, arr, animations);
     merge(arr, start, middle, end, auxArr, animations);
-}
+};
 
-function merge(arr, start, middle, end, auxArr, animations) {
+const merge = (arr, start, middle, end, auxArr, animations) => {
     let i = start, j = middle + 1, k = start;
 
     while (i <= middle && j <= end) {
@@ -40,4 +40,6 @@ function merge(arr, start, middle, end, auxArr, animations) {
         animations.push([k, auxArr[j], false]);
         arr[k++] = auxArr[j++];
     }
-}
+};
+
+export {getMergeSort};
