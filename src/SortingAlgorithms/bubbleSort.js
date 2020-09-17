@@ -1,7 +1,28 @@
-const getBubbleSort = arr => {
+const bubbleSortAnimations = (arr, arrBars) => {
     const animations = [];
     bubbleSort(arr, animations);
-    return animations;
+
+    for (let i = 0; i < animations.length; i++) {
+        if (animations[i][2]) {
+            const [barOneIdx, barTwoIdx,_ , toColour] = animations[i];
+            const barOneStyle = arrBars[barOneIdx].style;
+            const barTwoStyle = arrBars[barTwoIdx].style;
+            const colour = toColour == 'colour' ? 'pink' : 'olive';
+            setTimeout(() => {
+                barOneStyle.backgroundColor = colour;
+                barTwoStyle.backgroundColor = colour;
+            }, i * 50);
+        }
+        else {
+            setTimeout(() => {
+                const [barOneIdx, newHeightOne, _, barTwoIdx, newHeightTwo] = animations[i];
+                const barOneStyle = arrBars[barOneIdx].style;
+                barOneStyle.height = `${newHeightOne}px`;
+                const barTwoStyle = arrBars[barTwoIdx].style;
+                barTwoStyle.height = `${newHeightTwo}px`;
+            }, i * 50);
+        }
+    }
 };
 
 const bubbleSort = (arr, animations) => {
@@ -24,4 +45,4 @@ const bubbleSort = (arr, animations) => {
     }
 };
 
-export {getBubbleSort};
+export {bubbleSortAnimations};

@@ -1,7 +1,26 @@
-const getSelectionSort = arr => {
+const selectionSortAnimations = (arr, arrBars) => {
     const animations = [];
     selectionSort(arr, animations);
-    return animations;
+
+    for (let i = 0; i < animations.length; i++) {
+        if (animations[i][2]) {
+            const [barOneIdx, barTwoIdx] = animations[i];
+            const barOneStyle = arrBars[barOneIdx].style;
+            const barTwoStyle = arrBars[barTwoIdx].style;
+            const colour = i % 4 == 0 ? 'pink' : 'olive';
+            setTimeout(() => {
+                barOneStyle.backgroundColor = colour;
+                barTwoStyle.backgroundColor = colour;
+            }, i * 50);
+        }
+        else {
+            setTimeout(() => {
+                const [barOneIdx, newHeight] = animations[i];
+                const barOneStyle = arrBars[barOneIdx].style;
+                barOneStyle.height = `${newHeight}px`;
+            }, i * 50);
+        }
+    }
 };
 
 const selectionSort = (arr, animations) => {
@@ -22,4 +41,4 @@ const selectionSort = (arr, animations) => {
     }
 };
 
-export {getSelectionSort};
+export {selectionSortAnimations};

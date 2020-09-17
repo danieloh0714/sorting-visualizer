@@ -1,9 +1,28 @@
-const getMergeSort = arr => {
+const mergeSortAnimations = (arr, arrBars) => {
     if (arr.length <= 1) return arr;
     const animations = [];
     const auxArr = arr.slice();
     mergeSort(arr, 0, arr.length - 1, auxArr, animations);
-    return animations;
+
+    for (let i = 0; i < animations.length; i++) {
+        if (animations[i][2]) {
+            const [barOneIdx, barTwoIdx] = animations[i];
+            const barOneStyle = arrBars[barOneIdx].style;
+            const barTwoStyle = arrBars[barTwoIdx].style;
+            const colour = i % 3 == 0 ? 'pink' : 'olive';
+            setTimeout(() => {
+                barOneStyle.backgroundColor = colour;
+                barTwoStyle.backgroundColor = colour;
+            }, i * 50);
+        }
+        else {
+            setTimeout(() => {
+                const [barOneIdx, newHeight] = animations[i];
+                const barOneStyle = arrBars[barOneIdx].style;
+                barOneStyle.height = `${newHeight}px`;
+            }, i * 50);
+        }
+    }
 };
 
 const mergeSort = (arr, start, end, auxArr, animations) => {
@@ -42,4 +61,4 @@ const merge = (arr, start, middle, end, auxArr, animations) => {
     }
 };
 
-export {getMergeSort};
+export {mergeSortAnimations};
