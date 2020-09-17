@@ -7,7 +7,7 @@ const selectionSortAnimations = (arr, arrBars, arrColour, animColour) => {
             const [barOneIdx, barTwoIdx] = animations[i];
             const barOneStyle = arrBars[barOneIdx].style;
             const barTwoStyle = arrBars[barTwoIdx].style;
-            const colour = i % 4 == 0 ? 'pink' : 'olive';
+            const colour = i % 4 === 0 ? animColour : arrColour;
             setTimeout(() => {
                 barOneStyle.backgroundColor = colour;
                 barTwoStyle.backgroundColor = colour;

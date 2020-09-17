@@ -7,7 +7,7 @@ const bubbleSortAnimations = (arr, arrBars, arrColour, animColour) => {
             const [barOneIdx, barTwoIdx,_ , toColour] = animations[i];
             const barOneStyle = arrBars[barOneIdx].style;
             const barTwoStyle = arrBars[barTwoIdx].style;
-            const colour = toColour == 'colour' ? 'pink' : 'olive';
+            const colour = toColour === 'colour' ? animColour : arrColour;
             setTimeout(() => {
                 barOneStyle.backgroundColor = colour;
                 barTwoStyle.backgroundColor = colour;

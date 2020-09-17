@@ -10,14 +10,14 @@ const insertionSortAnimations = (arr, arrBars, arrColour, animColour) => {
                 barOneStyle.height = `${newHeightOne}px`;
                 const barTwoStyle = arrBars[barTwoIdx].style;
                 barTwoStyle.height = `${newHeightTwo}px`;
-                barOneStyle.backgroundColor = 'olive';
-                barTwoStyle.backgroundColor = 'pink';
+                barOneStyle.backgroundColor = arrColour;
+                barTwoStyle.backgroundColor = animColour;
             }, i * 300);
         }
         else {
             const [toColour, barIdx] = animations[i];
             const barStyle = arrBars[barIdx].style;
-            const colour = toColour === 'colour' ? 'pink' : 'olive';
+            const colour = toColour === 'colour' ? animColour : arrColour;
             setTimeout(() => {
                 barStyle.backgroundColor = colour;
             }, i * 300);

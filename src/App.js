@@ -6,6 +6,7 @@ import {bubbleSortAnimations} from './sortingAlgorithms/bubbleSort.js';
 import {selectionSortAnimations} from './sortingAlgorithms/selectionSort.js';
 import {insertionSortAnimations} from './sortingAlgorithms/insertionSort.js';
 import {mergeSortAnimations} from './sortingAlgorithms/mergeSort.js';
+import {heapSortAnimations} from './sortingAlgorithms/heapSort.js'
 
 const ARRAY_COLOUR = 'olive';
 const ANIMATION_COLOUR = 'pink';
@@ -37,10 +38,30 @@ const App = () => {
             <Title>Sorting Visualizer</Title>
             <Button.Group>
                 <Button color='info' onClick={() => setArr(newArray)}>New Array</Button>
-                <Button color='warning' onClick={() => bubbleSortAnimations(arr, arrBars, ARRAY_COLOUR, ANIMATION_COLOUR)}>Bubble Sort</Button>
-                <Button color='warning' onClick={() => selectionSortAnimations(arr, arrBars, ARRAY_COLOUR, ANIMATION_COLOUR)}>Selection Sort</Button>
-                <Button color='warning' onClick={() => insertionSortAnimations(arr, arrBars, ARRAY_COLOUR, ANIMATION_COLOUR)}>Insertion Sort</Button>
-                <Button color='warning' onClick={() => mergeSortAnimations(arr, arrBars, ARRAY_COLOUR, ANIMATION_COLOUR)}>Merge Sort</Button>
+                <Button
+                    color='warning'
+                    onClick={() => bubbleSortAnimations(arr, arrBars, ARRAY_COLOUR, ANIMATION_COLOUR)}
+                >
+                    Bubble Sort
+                </Button>
+                <Button
+                    color='warning'
+                    onClick={() => selectionSortAnimations(arr, arrBars, ARRAY_COLOUR, ANIMATION_COLOUR)}
+                >
+                    Selection Sort
+                </Button>
+                <Button
+                    color='warning'
+                    onClick={() => insertionSortAnimations(arr, arrBars, ARRAY_COLOUR, ANIMATION_COLOUR)}
+                >
+                    Insertion Sort
+                </Button>
+                <Button
+                    color='warning'
+                    onClick={() => mergeSortAnimations(arr, arrBars, ARRAY_COLOUR, ANIMATION_COLOUR)}
+                >
+                    Merge Sort
+                </Button>
             </Button.Group>
             <ArrayBars arr={arr} />
         </Container>
