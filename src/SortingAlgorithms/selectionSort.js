@@ -1,4 +1,4 @@
-const selectionSortAnimations = (arr, arrBars) => {
+const selectionSortAnimations = (arr, arrBars, arrColour, animColour) => {
     const animations = [];
     selectionSort(arr, animations);
 

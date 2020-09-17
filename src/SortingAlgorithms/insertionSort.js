@@ -1,36 +1,37 @@
-const insertionSortAnimations = (arr, arrBars) => {
+const insertionSortAnimations = (arr, arrBars, arrColour, animColour) => {
     const animations = [];
     insertionSort(arr, animations);
 
     for (let i = 0; i < animations.length; i++) {
-        if (animations[i][2]) {
-            const [barOneIdx, barTwoIdx] = animations[i];
-            const barOneStyle = arrBars[barOneIdx].style;
-            const barTwoStyle = arrBars[barTwoIdx].style;
-            const colour = i % 4 == 0 ? 'pink' : 'olive';
+        if (animations[i][0] === 'move') {
             setTimeout(() => {
-                barOneStyle.backgroundColor = colour;
-                barTwoStyle.backgroundColor = colour;
-            }, i * 50);
+                const [_, barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] = animations[i];
+                const barOneStyle = arrBars[barOneIdx].style;
+                barOneStyle.height = `${newHeightOne}px`;
+                const barTwoStyle = arrBars[barTwoIdx].style;
+                barTwoStyle.height = `${newHeightTwo}px`;
+                barOneStyle.backgroundColor = 'olive';
+                barTwoStyle.backgroundColor = 'pink';
+            }, i * 300);
         }
         else {
+            const [toColour, barIdx] = animations[i];
+            const barStyle = arrBars[barIdx].style;
+            const colour = toColour === 'colour' ? 'pink' : 'olive';
             setTimeout(() => {
-                const [barOneIdx, newHeight] = animations[i];
-                const barOneStyle = arrBars[barOneIdx].style;
-                barOneStyle.height = `${newHeight}px`;
-            }, i * 50);
+                barStyle.backgroundColor = colour;
+            }, i * 300);
         }
     }
 };
 
 const insertionSort = (arr, animations) => {
     for (let i = 1; i < arr.length; i++) {
-        animations.push([i, i, true, 'colour']);
         let j = i;
+        animations.push(['colour', j]);
         while (j > 0) {
             if (arr[j] < arr[j - 1]) {
-                animations.push([j, arr[j - 1], false]);
-                animations.push([j - 1, arr[j], false]);
+                animations.push(['move', j, arr[j - 1], j - 1, arr[j]]);
                 let temp = arr[j];
                 arr[j] = arr[j - 1];
                 arr[j - 1] = temp;
@@ -40,7 +41,7 @@ const insertionSort = (arr, animations) => {
                 break;
             }
         }
-        animations.push([i, i, true, 'uncolour']);
+        animations.push(['uncolour', j]);
     }
 };
 

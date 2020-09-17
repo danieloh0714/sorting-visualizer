@@ -1,4 +1,4 @@
-const mergeSortAnimations = (arr, arrBars) => {
+const mergeSortAnimations = (arr, arrBars, arrColour, animColour) => {
     if (arr.length <= 1) return arr;
     const animations = [];
     const auxArr = arr.slice();

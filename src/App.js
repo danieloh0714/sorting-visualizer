@@ -7,6 +7,8 @@ import {selectionSortAnimations} from './sortingAlgorithms/selectionSort.js';
 import {insertionSortAnimations} from './sortingAlgorithms/insertionSort.js';
 import {mergeSortAnimations} from './sortingAlgorithms/mergeSort.js';
 
+const ARRAY_COLOUR = 'olive';
+const ANIMATION_COLOUR = 'pink';
 
 const newArray = () => (
     Array.from({length: 100}, () => Math.floor(Math.random() * (100 - 5 + 1) * 5))
@@ -35,10 +37,10 @@ const App = () => {
             <Title>Sorting Visualizer</Title>
             <Button.Group>
                 <Button color='info' onClick={() => setArr(newArray)}>New Array</Button>
-                <Button color='warning' onClick={() => bubbleSortAnimations(arr, arrBars)}>Bubble Sort</Button>
-                <Button color='warning' onClick={() => selectionSortAnimations(arr, arrBars)}>Selection Sort</Button>
-                <Button color='warning' onClick={() => insertionSortAnimations(arr, arrBars)}>Insertion Sort</Button>
-                <Button color='warning' onClick={() => mergeSortAnimations(arr, arrBars)}>Merge Sort</Button>
+                <Button color='warning' onClick={() => bubbleSortAnimations(arr, arrBars, ARRAY_COLOUR, ANIMATION_COLOUR)}>Bubble Sort</Button>
+                <Button color='warning' onClick={() => selectionSortAnimations(arr, arrBars, ARRAY_COLOUR, ANIMATION_COLOUR)}>Selection Sort</Button>
+                <Button color='warning' onClick={() => insertionSortAnimations(arr, arrBars, ARRAY_COLOUR, ANIMATION_COLOUR)}>Insertion Sort</Button>
+                <Button color='warning' onClick={() => mergeSortAnimations(arr, arrBars, ARRAY_COLOUR, ANIMATION_COLOUR)}>Merge Sort</Button>
             </Button.Group>
             <ArrayBars arr={arr} />
         </Container>

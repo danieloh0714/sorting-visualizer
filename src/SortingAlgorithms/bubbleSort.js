@@ -1,4 +1,4 @@
-const bubbleSortAnimations = (arr, arrBars) => {
+const bubbleSortAnimations = (arr, arrBars, arrColour, animColour) => {
     const animations = [];
     bubbleSort(arr, animations);
 
