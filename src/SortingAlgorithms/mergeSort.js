@@ -13,14 +13,14 @@ const mergeSortAnimations = (arr, arrBars, arrColour, animColour) => {
             setTimeout(() => {
                 barOneStyle.backgroundColor = colour;
                 barTwoStyle.backgroundColor = colour;
-            }, i * 10);
+            }, i * 30);
         }
         else {
             setTimeout(() => {
                 const [barOneIdx, newHeight] = animations[i];
                 const barOneStyle = arrBars[barOneIdx].style;
                 barOneStyle.height = `${newHeight}px`;
-            }, i * 10);
+            }, i * 30);
         }
     }
 };
