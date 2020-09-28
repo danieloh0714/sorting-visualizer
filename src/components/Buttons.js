@@ -1,24 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button} from 'rbx';
-import {bubbleSortAnimations} from '../sortingAlgorithms/bubbleSort';
-import {selectionSortAnimations} from '../sortingAlgorithms/selectionSort';
-import {insertionSortAnimations} from '../sortingAlgorithms/insertionSort';
-import {mergeSortAnimations} from '../sortingAlgorithms/mergeSort';
-import {quickSortAnimations} from '../sortingAlgorithms/quickSort';
-import {newArray} from '../utils/utils';
+import {newArray, runSortingAlgorithm} from '../utils/utils';
 
 
 const Buttons = ({arr, setArr}) => {
-    const arrBars = document.getElementsByClassName('array-bar');
+    const [selectedAlgo, setSelectedAlgo] = useState('');
 
     return (
         <Button.Group>
             <Button color='info' onClick={() => {setArr(newArray)}}>New Array</Button>
-            <Button color='warning' onClick={() => bubbleSortAnimations(arr, arrBars)}>Bubble Sort</Button>
-            <Button color='warning' onClick={() => selectionSortAnimations(arr, arrBars)}>Selection Sort</Button>
-            <Button color='warning' onClick={() => insertionSortAnimations(arr, arrBars)}>Insertion Sort</Button>
-            <Button color='warning' onClick={() => mergeSortAnimations(arr, arrBars)}>Merge Sort</Button>
-            <Button color='warning' onClick={() => quickSortAnimations(arr, arrBars)}>Quick Sort</Button>
+            <Button color='warning' onClick={() => setSelectedAlgo('bubble')}>Bubble Sort</Button>
+            <Button color='warning' onClick={() => setSelectedAlgo('selection')}>Selection Sort</Button>
+            <Button color='warning' onClick={() => setSelectedAlgo('insertion')}>Insertion Sort</Button>
+            <Button color='warning' onClick={() => setSelectedAlgo('merge')}>Merge Sort</Button>
+            <Button color='warning' onClick={() => setSelectedAlgo('quick')}>Quick Sort</Button>
+            <Button color='danger' disabled={selectedAlgo === ''} onClick={() => runSortingAlgorithm(selectedAlgo, arr)}>Sort</Button>
         </Button.Group>
     )
 };
