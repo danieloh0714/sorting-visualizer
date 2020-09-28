@@ -5,7 +5,7 @@ const sortSpeed = 300;
 const pivotColour = 'brown';
 const partitionColour = 'gold';
 
-const quickSortAnimations = (arr, arrBars) => {
+const quickSortAnimations = (arr, arrBars, setIsSorting) => {
     const animations = [];
     quickSort(arr, 0, arr.length - 1, animations);
 
@@ -50,6 +50,10 @@ const quickSortAnimations = (arr, arrBars) => {
             }, i * sortSpeed);
         }
     }
+
+    setTimeout(() => {
+        setIsSorting(false);
+    }, animations.length * sortSpeed);
 };
 
 const quickSort = (arr, start, end, animations) => {

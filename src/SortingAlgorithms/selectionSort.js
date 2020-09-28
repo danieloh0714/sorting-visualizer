@@ -6,7 +6,7 @@ const minIdxColour = 'gold';
 const sortedColour = 'greenyellow';
 const sortSpeed = 100;
 
-const selectionSortAnimations = (arr, arrBars) => {
+const selectionSortAnimations = (arr, arrBars, setIsSorting) => {
     const animations = [];
     selectionSort(arr, animations);
 
@@ -52,6 +52,7 @@ const selectionSortAnimations = (arr, arrBars) => {
     setTimeout(() => {
         for (let i = 0; i < arrBars.length; i++) {
             arrBars[i].style.backgroundColor = arrColour;
+            setIsSorting(false);
         }
     }, animations.length * sortSpeed);
 };

@@ -3,7 +3,7 @@ import {arrColour, animColour} from '../utils/utils';
 
 const sortSpeed = 200;
 
-const bubbleSortAnimations = (arr, arrBars) => {
+const bubbleSortAnimations = (arr, arrBars, setIsSorting) => {
     const animations = [];
     bubbleSort(arr, animations);
 
@@ -27,6 +27,10 @@ const bubbleSortAnimations = (arr, arrBars) => {
             }, i * sortSpeed);
         }
     }
+
+    setTimeout(() => {
+        setIsSorting(false);
+    }, animations.length * sortSpeed);
 };
 
 const bubbleSort = (arr, animations) => {

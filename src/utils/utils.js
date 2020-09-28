@@ -9,23 +9,24 @@ const newArray = () => (
     Array.from({length: 20}, () => Math.floor(Math.random() * (100 - 5 + 1) * 5))
 );
 
-const runSortingAlgorithm = (sortingAlgorithm, arr) => {
+const runSortingAlgorithm = (sortingAlgorithm, arr, setIsSorting) => {
     const arrBars = document.getElementsByClassName('array-bar');
+    setIsSorting(true);
 
     if (sortingAlgorithm === 'bubble') {
-        bubbleSortAnimations(arr, arrBars);
+        bubbleSortAnimations(arr, arrBars, setIsSorting);
     }
     else if (sortingAlgorithm === 'selection') {
-        selectionSortAnimations(arr, arrBars);
+        selectionSortAnimations(arr, arrBars, setIsSorting);
     }
     else if (sortingAlgorithm === 'insertion') {
-        insertionSortAnimations(arr, arrBars);
+        insertionSortAnimations(arr, arrBars, setIsSorting);
     }
     else if (sortingAlgorithm === 'merge') {
-        mergeSortAnimations(arr, arrBars);
+        mergeSortAnimations(arr, arrBars, setIsSorting);
     }
     else if (sortingAlgorithm === 'quick') {
-        quickSortAnimations(arr, arrBars);
+        quickSortAnimations(arr, arrBars, setIsSorting);
     }
 };
 
