@@ -32,5 +32,6 @@ const runSortingAlgorithm = (sortingAlgorithm, arr, setIsSorting) => {
 
 const arrColour = 'pink';
 const animColour = 'navy';
+const sortedColour = 'greenyellow';
 
-export {newArray, runSortingAlgorithm,arrColour, animColour};
+export {newArray, runSortingAlgorithm, arrColour, animColour, sortedColour};

@@ -1,4 +1,4 @@
-import {arrColour, animColour} from '../utils/utils';
+import {arrColour, animColour, sortedColour} from '../utils/utils';
 
 
 const sortSpeed = 200;
@@ -29,8 +29,17 @@ const bubbleSortAnimations = (arr, arrBars, setIsSorting) => {
     }
 
     setTimeout(() => {
+        for (let i = 0; i < arrBars.length; i++) {
+            arrBars[i].style.backgroundColor = sortedColour;
+        }
+    }, (animations.length + 3) * sortSpeed);
+
+    setTimeout(() => {
+        for (let i = 0; i < arrBars.length; i++) {
+            arrBars[i].style.backgroundColor = arrColour;
+        }
         setIsSorting(false);
-    }, animations.length * sortSpeed);
+    }, (animations.length + 10) * sortSpeed);
 };
 
 const bubbleSort = (arr, animations) => {

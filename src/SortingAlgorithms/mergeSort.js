@@ -1,10 +1,9 @@
-import {arrColour, animColour} from '../utils/utils';
+import {arrColour, animColour, sortedColour} from '../utils/utils';
 
 
 const sortSpeed = 100;
 
 const mergeSortAnimations = (arr, arrBars, setIsSorting) => {
-    // if (arr.length <= 1) return arr;
     const animations = [];
     const auxArr = arr.slice();
     mergeSort(arr, 0, arr.length - 1, auxArr, animations);
@@ -33,8 +32,17 @@ const mergeSortAnimations = (arr, arrBars, setIsSorting) => {
     }
 
     setTimeout(() => {
+        for (let i = 0; i < arrBars.length; i++) {
+            arrBars[i].style.backgroundColor = sortedColour;
+        }
+    }, (animations.length + 3) * sortSpeed);
+
+    setTimeout(() => {
+        for (let i = 0; i < arrBars.length; i++) {
+            arrBars[i].style.backgroundColor = arrColour;
+        }
         setIsSorting(false);
-    }, animations.length * sortSpeed);
+    }, (animations.length + 10) * sortSpeed);
 };
 
 const mergeSort = (arr, start, end, auxArr, animations) => {

@@ -1,7 +1,7 @@
-import {arrColour, animColour} from '../utils/utils';
+import {arrColour, animColour, sortedColour} from '../utils/utils';
 
 
-const sortSpeed = 300;
+const sortSpeed = 30;
 const pivotColour = 'brown';
 const partitionColour = 'gold';
 
@@ -52,8 +52,17 @@ const quickSortAnimations = (arr, arrBars, setIsSorting) => {
     }
 
     setTimeout(() => {
+        for (let i = 0; i < arrBars.length; i++) {
+            arrBars[i].style.backgroundColor = sortedColour;
+        }
+    }, (animations.length + 3) * sortSpeed);
+
+    setTimeout(() => {
+        for (let i = 0; i < arrBars.length; i++) {
+            arrBars[i].style.backgroundColor = arrColour;
+        }
         setIsSorting(false);
-    }, animations.length * sortSpeed);
+    }, (animations.length + 10) * sortSpeed);
 };
 
 const quickSort = (arr, start, end, animations) => {

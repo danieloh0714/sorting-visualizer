@@ -1,9 +1,8 @@
-import {arrColour, animColour} from '../utils/utils';
+import {arrColour, animColour, sortedColour} from '../utils/utils';
 
 
 const rootColour = 'brown';
 const minIdxColour = 'gold';
-const sortedColour = 'greenyellow';
 const sortSpeed = 100;
 
 const selectionSortAnimations = (arr, arrBars, setIsSorting) => {
@@ -52,9 +51,9 @@ const selectionSortAnimations = (arr, arrBars, setIsSorting) => {
     setTimeout(() => {
         for (let i = 0; i < arrBars.length; i++) {
             arrBars[i].style.backgroundColor = arrColour;
-            setIsSorting(false);
         }
-    }, animations.length * sortSpeed);
+        setIsSorting(false);
+    }, (animations.length + 10) * sortSpeed);
 };
 
 const selectionSort = (arr, animations) => {
