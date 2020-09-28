@@ -1,10 +1,18 @@
-const mergeSortAnimations = (arr, arrBars, arrColour, animColour) => {
-    if (arr.length <= 1) return arr;
+import {arrColour, animColour} from '../utils/utils';
+
+
+const sortSpeed = 100;
+
+const mergeSortAnimations = (arr, arrBars) => {
+    // if (arr.length <= 1) return arr;
     const animations = [];
     const auxArr = arr.slice();
     mergeSort(arr, 0, arr.length - 1, auxArr, animations);
 
     for (let i = 0; i < animations.length; i++) {
+        const animation = animations[i];
+        const action = animation[0];
+        
         if (animations[i][2]) {
             const [barOneIdx, barTwoIdx] = animations[i];
             const barOneStyle = arrBars[barOneIdx].style;
@@ -13,14 +21,14 @@ const mergeSortAnimations = (arr, arrBars, arrColour, animColour) => {
             setTimeout(() => {
                 barOneStyle.backgroundColor = colour;
                 barTwoStyle.backgroundColor = colour;
-            }, i * 30);
+            }, i * sortSpeed);
         }
         else {
             setTimeout(() => {
                 const [barOneIdx, newHeight] = animations[i];
                 const barOneStyle = arrBars[barOneIdx].style;
                 barOneStyle.height = `${newHeight}px`;
-            }, i * 30);
+            }, i * sortSpeed);
         }
     }
 };

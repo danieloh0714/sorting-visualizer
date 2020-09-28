@@ -1,43 +1,75 @@
-const selectionSortAnimations = (arr, arrBars, arrColour, animColour) => {
+import {arrColour, animColour} from '../utils/utils';
+
+
+const rootColour = 'orange';
+const minIdxColour = 'navy';
+const sortSpeed = 150;
+
+const selectionSortAnimations = (arr, arrBars) => {
     const animations = [];
     selectionSort(arr, animations);
 
     for (let i = 0; i < animations.length; i++) {
-        if (animations[i][2]) {
-            const [barOneIdx, barTwoIdx] = animations[i];
-            const barOneStyle = arrBars[barOneIdx].style;
-            const barTwoStyle = arrBars[barTwoIdx].style;
-            const colour = i % 4 === 0 ? animColour : arrColour;
+        const animation = animations[i];
+        const action = animation[0];
+
+        if (action === 'root') {
             setTimeout(() => {
-                barOneStyle.backgroundColor = colour;
-                barTwoStyle.backgroundColor = colour;
-            }, i * 50);
+                const [_, toColour, idx] = animation;
+                arrBars[idx].style.backgroundColor = toColour ? rootColour : arrColour;
+            }, i * sortSpeed);
         }
-        else {
+        else if (action === 'compare') {
             setTimeout(() => {
-                const [barOneIdx, newHeight] = animations[i];
-                const barOneStyle = arrBars[barOneIdx].style;
-                barOneStyle.height = `${newHeight}px`;
-            }, i * 50);
+                const [_, toColour, idx] = animation;
+                const barStyle = arrBars[idx].style;
+                const colour = toColour ? animColour : arrColour;
+                barStyle.backgroundColor = colour;
+            }, i * sortSpeed);
+        }
+        else if (action === 'swap') {
+            setTimeout(() => {
+                const [_, barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] = animation;
+                const barOne = arrBars[barOneIdx].style;
+                const barTwo = arrBars[barTwoIdx].style;
+                barOne.height = `${newHeightOne}px`;
+                barOne.backgroundColor = arrColour;
+                barTwo.height = `${newHeightTwo}px`;
+                barTwo.backgroundColor = arrColour;
+            }, i * sortSpeed);
+        }
+        else if (action === 'newMinIdx') {
+            setTimeout(() => {
+                const [_, rootIdx, oldIdx, newIdx] = animation;
+                arrBars[oldIdx].style.backgroundColor = arrColour;
+                arrBars[newIdx].style.backgroundColor = minIdxColour;
+                arrBars[rootIdx].style.backgroundColor = rootColour;
+            }, i * sortSpeed);
         }
     }
 };
 
 const selectionSort = (arr, animations) => {
     for (let i = 0; i < arr.length; i++) {
+        animations.push(['root', true, i]);
+
         let minIdx = i;
         
         for (let j = i + 1; j < arr.length; j++) {
-            animations.push([i, j, true]);
-            animations.push([i, j, true]);
-            if (arr[j] < arr[minIdx]) minIdx = j;
+            animations.push(['compare', true, j]);
+            animations.push(['compare', false, j]);
+            if (arr[j] < arr[minIdx]) {
+                animations.push(['newMinIdx', i, minIdx, j]);
+                minIdx = j;
+            }
         }
         
-        animations.push([i, arr[minIdx], false]);
-        animations.push([minIdx, arr[i], false]);
+        animations.push(['swap', i, arr[minIdx], minIdx, arr[i]]);
         const temp = arr[i];
         arr[i] = arr[minIdx];
         arr[minIdx] = temp;
+
+        animations.push(['root', false, i]);
     }
 };
 
