@@ -1,9 +1,9 @@
 import {arrColour, animColour} from '../utils/utils';
 
 
-const sortSpeed = 500;
-const pivotColour = 'orange';
-const partitionColour = 'navy';
+const sortSpeed = 300;
+const pivotColour = 'brown';
+const partitionColour = 'gold';
 
 const quickSortAnimations = (arr, arrBars) => {
     const animations = [];

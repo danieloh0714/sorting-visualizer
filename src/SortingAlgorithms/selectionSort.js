@@ -1,9 +1,10 @@
 import {arrColour, animColour} from '../utils/utils';
 
 
-const rootColour = 'orange';
-const minIdxColour = 'navy';
-const sortSpeed = 150;
+const rootColour = 'brown';
+const minIdxColour = 'gold';
+const sortedColour = 'greenyellow';
+const sortSpeed = 100;
 
 const selectionSortAnimations = (arr, arrBars) => {
     const animations = [];
@@ -16,7 +17,7 @@ const selectionSortAnimations = (arr, arrBars) => {
         if (action === 'root') {
             setTimeout(() => {
                 const [_, toColour, idx] = animation;
-                arrBars[idx].style.backgroundColor = toColour ? rootColour : arrColour;
+                arrBars[idx].style.backgroundColor = toColour ? rootColour : sortedColour;
             }, i * sortSpeed);
         }
         else if (action === 'compare') {
@@ -47,6 +48,12 @@ const selectionSortAnimations = (arr, arrBars) => {
             }, i * sortSpeed);
         }
     }
+
+    setTimeout(() => {
+        for (let i = 0; i < arrBars.length; i++) {
+            arrBars[i].style.backgroundColor = arrColour;
+        }
+    }, animations.length * sortSpeed);
 };
 
 const selectionSort = (arr, animations) => {
