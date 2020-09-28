@@ -1,9 +1,9 @@
 import {arrColour, animColour, sortedColour} from '../utils/utils';
 
 
-const sortSpeed = 30;
+const sortSpeed = 10;
 const pivotColour = 'brown';
-const partitionColour = 'gold';
+const partitionColour = 'black';
 
 const quickSortAnimations = (arr, arrBars, setIsSorting) => {
     const animations = [];
@@ -14,15 +14,15 @@ const quickSortAnimations = (arr, arrBars, setIsSorting) => {
         const action = animation[0];
 
         if (action === 'check') {
-            const [_, toColour, barIdx, partitionIdx] = animation;
             setTimeout(() => {
+                const [_, toColour, barIdx, partitionIdx] = animation;
                 arrBars[barIdx].style.backgroundColor = toColour ? animColour : arrColour;
                 arrBars[partitionIdx].style.backgroundColor = partitionColour;
             }, i * sortSpeed);
         }
         else if (action === 'swap') {
-            const [_, barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] = animation;
             setTimeout(() => {
+                const [_, barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] = animation;
                 const barOne = arrBars[barOneIdx].style;
                 const barTwo = arrBars[barTwoIdx].style;
                 barOne.height = `${newHeightOne}px`;
@@ -31,21 +31,21 @@ const quickSortAnimations = (arr, arrBars, setIsSorting) => {
             }, i * sortSpeed);
         }
         else if (action === 'partitionMove') {
-            const [_, oldIdx, newIdx] = animation;
             setTimeout(() => {
+                const [_, oldIdx, newIdx] = animation;
                 arrBars[oldIdx].style.backgroundColor = arrColour;
                 arrBars[newIdx].style.backgroundColor = partitionColour;
             }, i * sortSpeed);
         }
         else if (action === 'partitionStartEnd') {
-            const [_, toColour, partitionIdx] = animation;
             setTimeout(() => {
+                const [_, toColour, partitionIdx] = animation;
                 arrBars[partitionIdx].style.backgroundColor = toColour ? partitionColour : arrColour;
             }, i * sortSpeed);
         }
         else if (action === 'pivot') {
-            const [_, toColour, pivotIdx] = animation;
             setTimeout(() => {
+                const [_, toColour, pivotIdx] = animation;
                 arrBars[pivotIdx].style.backgroundColor = toColour ? pivotColour : arrColour;
             }, i * sortSpeed);
         }

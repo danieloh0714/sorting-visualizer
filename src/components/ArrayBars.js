@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container} from 'rbx';
+import {Container} from '@material-ui/core';
 
 const ArrayBars = ({arr}) => (
     <Container>

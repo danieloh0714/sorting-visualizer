@@ -1,7 +1,7 @@
 import {arrColour, animColour, sortedColour} from '../utils/utils';
 
 
-const sortSpeed = 100;
+const sortSpeed = 5;
 
 const mergeSortAnimations = (arr, arrBars, setIsSorting) => {
     const animations = [];
@@ -12,21 +12,29 @@ const mergeSortAnimations = (arr, arrBars, setIsSorting) => {
         const animation = animations[i];
         const action = animation[0];
         
-        if (animations[i][2]) {
-            const [barOneIdx, barTwoIdx] = animations[i];
-            const barOneStyle = arrBars[barOneIdx].style;
-            const barTwoStyle = arrBars[barTwoIdx].style;
-            const colour = i % 3 === 0 ? animColour : arrColour;
+        if (action === 'compare') {
             setTimeout(() => {
-                barOneStyle.backgroundColor = colour;
-                barTwoStyle.backgroundColor = colour;
+                const [_, toColour, barOneIdx, barTwoIdx] = animation;
+                const barOne = arrBars[barOneIdx].style;
+                const barTwo = arrBars[barTwoIdx].style;
+                const colour = toColour ? animColour : arrColour;
+                barOne.backgroundColor = colour;
+                barTwo.backgroundColor = colour;
             }, i * sortSpeed);
         }
-        else {
+        else if (action === 'swap') {
             setTimeout(() => {
-                const [barOneIdx, newHeight] = animations[i];
-                const barOneStyle = arrBars[barOneIdx].style;
-                barOneStyle.height = `${newHeight}px`;
+                const [_, barOneIdx, newHeight] = animation;
+                const barOne = arrBars[barOneIdx].style;
+                barOne.height = `${newHeight}px`;
+                barOne.backgroundColor = 'gold';
+            }, i * sortSpeed);
+        }
+        else if (action === 'swapColour') {
+            setTimeout(() => {
+                const [_, toColour, barIdx] = animation;
+                const barOne = arrBars[barIdx].style;
+                barOne.backgroundColor = toColour ? 'gold' : arrColour;
             }, i * sortSpeed);
         }
     }
@@ -57,26 +65,40 @@ const merge = (arr, start, middle, end, auxArr, animations) => {
     let i = start, j = middle + 1, k = start;
 
     while (i <= middle && j <= end) {
-        animations.push([i, j, true]);
-        animations.push([i, j, true]);
+        animations.push(['compare', true, i, j]);
         if (auxArr[i] <= auxArr[j]) {
-            animations.push([k, auxArr[i], false]);
+            animations.push(['swapColour', true, k]);
+            animations.push(['swap', k, auxArr[i]]);
+            animations.push(['swapColour', false, k]);
+        }
+        else {
+            animations.push(['swapColour', true, k]);
+            animations.push(['swap', k, auxArr[j]]);
+            animations.push(['swapColour', false, k]);
+        }
+        animations.push(['compare', false, i, j]);
+
+        if (auxArr[i] <= auxArr[j]) {
             arr[k++] = auxArr[i++];
-        } else {
-            animations.push([k, auxArr[j], false]);
+        }
+        else {
             arr[k++] = auxArr[j++];
         }
     }
     while (i <= middle) {
-        animations.push([i, i, true]);
-        animations.push([i, i, true]);
-        animations.push([k, auxArr[i], false]);
+        animations.push(['compare', true, i, i]);
+        animations.push(['swapColour', true, k]);
+        animations.push(['swap', k, auxArr[i]]);
+        animations.push(['swapColour', false, k]);
+        animations.push(['compare', false, i, i]);
         arr[k++] = auxArr[i++];
     }
     while (j <= end) {
-        animations.push([j, j, true]);
-        animations.push([j, j, true]);
-        animations.push([k, auxArr[j], false]);
+        animations.push(['compare', true, j, j]);
+        animations.push(['swapColour', true, k]);
+        animations.push(['swap', k, auxArr[j]]);
+        animations.push(['swapColour', false, k]);
+        animations.push(['compare', false, j, j]);
         arr[k++] = auxArr[j++];
     }
 };

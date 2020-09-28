@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
 import 'rbx/index.css';
-import {Container, Title} from 'rbx';
+import {Title} from 'rbx';
+import {Container} from '@material-ui/core';
 import Buttons from './components/Buttons';
 import ArrayBars from './components/ArrayBars';
 import {newArray} from './utils/utils';

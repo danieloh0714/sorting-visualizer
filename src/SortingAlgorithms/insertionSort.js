@@ -1,7 +1,7 @@
 import {arrColour, animColour, sortedColour} from '../utils/utils';
 
 
-const sortSpeed = 175;
+const sortSpeed = 100;
 
 const insertionSortAnimations = (arr, arrBars, setIsSorting) => {
     const animations = [];
