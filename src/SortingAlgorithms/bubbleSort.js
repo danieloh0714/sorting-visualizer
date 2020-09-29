@@ -1,9 +1,9 @@
 import {arrColour, animColour, sortedColour} from '../utils/utils';
 
 
-const sortSpeed = 200;
+const bubbleSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
+    const sortSpeed = speeds[0];
 
-const bubbleSortAnimations = (arr, arrBars, setIsSorting) => {
     const animations = [];
     bubbleSort(arr, animations);
 
@@ -13,17 +13,28 @@ const bubbleSortAnimations = (arr, arrBars, setIsSorting) => {
 
         if (action === 'colour') {
             setTimeout(() => {
-                const [_, toColour, barOneIdx, barTwoIdx] = animation;
+                const toColour = animation[1];
+                const barOne = arrBars[animation[2]].style;
+                const barTwo = arrBars[animation[3]].style;
                 const colour = toColour ? animColour : arrColour;
-                arrBars[barOneIdx].style.backgroundColor = colour;
-                arrBars[barTwoIdx].style.backgroundColor = colour;
+                barOne.backgroundColor = colour;
+                barTwo.backgroundColor = colour;
             }, i * sortSpeed);
         }
         else if (action === 'swap') {
             setTimeout(() => {
-                const [_, barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] = animation;
-                arrBars[barOneIdx].style.height = `${newHeightOne}px`;
-                arrBars[barTwoIdx].style.height = `${newHeightTwo}px`;
+                const barOne = arrBars[animation[1]].style;
+                const newHeightOne = animation[2];
+                const barTwo = arrBars[animation[3]].style;
+                const newHeightTwo = animation[4];
+                barOne.height = `${newHeightOne}px`;
+                barTwo.height = `${newHeightTwo}px`;
+            }, i * sortSpeed);
+        }
+        else if (action === 'sorted') {
+            setTimeout(() => {
+                const bar = arrBars[animation[1]].style;
+                bar.backgroundColor = sortedColour;
             }, i * sortSpeed);
         }
     }
@@ -32,36 +43,41 @@ const bubbleSortAnimations = (arr, arrBars, setIsSorting) => {
         for (let i = 0; i < arrBars.length; i++) {
             arrBars[i].style.backgroundColor = sortedColour;
         }
-    }, (animations.length + 3) * sortSpeed);
+    }, (animations.length + speeds[1]) * sortSpeed);
 
     setTimeout(() => {
         for (let i = 0; i < arrBars.length; i++) {
             arrBars[i].style.backgroundColor = arrColour;
         }
         setIsSorting(false);
-    }, (animations.length + 10) * sortSpeed);
+    }, (animations.length + speeds[2]) * sortSpeed);
 };
 
 const bubbleSort = (arr, animations) => {
     let isSorted = false;
 
-    while (!isSorted) {
+    for (let i = 0; i < arr.length; i++) {
         isSorted = true;
 
-        for (let i = 0; i < arr.length - 1; i++) {
-            animations.push(['colour', true, i, i + 1]);
+        let j;
+        for (j = 0; j < arr.length - i - 1; j++) {
+            animations.push(['colour', true, j, j + 1]);
 
-            if (arr[i + 1] < arr[i]) {
-                animations.push(['swap', i, arr[i + 1], i + 1, arr[i]]);
-                const temp = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = temp;
+            if (arr[j + 1] < arr[j]) {
+                animations.push(['swap', j, arr[j + 1], j + 1, arr[j]]);
+                const temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
 
                 isSorted = false;
             }
 
-            animations.push(['colour', false, i, i + 1]);
+            animations.push(['colour', false, j, j + 1]);
         }
+
+        animations.push(['sorted', j]);
+
+        if (isSorted) break;
     }
 };
 

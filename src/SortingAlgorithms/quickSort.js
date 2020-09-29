@@ -1,11 +1,12 @@
 import {arrColour, animColour, sortedColour} from '../utils/utils';
 
 
-const sortSpeed = 10;
-const pivotColour = 'brown';
-const partitionColour = 'black';
+const pivotColour = 'orange';
+const partitionColour = 'gold';
 
-const quickSortAnimations = (arr, arrBars, setIsSorting) => {
+const quickSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
+    const sortSpeed = speeds[0];
+
     const animations = [];
     quickSort(arr, 0, arr.length - 1, animations);
 
@@ -15,38 +16,43 @@ const quickSortAnimations = (arr, arrBars, setIsSorting) => {
 
         if (action === 'check') {
             setTimeout(() => {
-                const [_, toColour, barIdx, partitionIdx] = animation;
-                arrBars[barIdx].style.backgroundColor = toColour ? animColour : arrColour;
-                arrBars[partitionIdx].style.backgroundColor = partitionColour;
+                const toColour = animation[1];
+                const bar = arrBars[animation[2]].style;
+                const partitionBar = arrBars[animation[3]].style;
+                bar.backgroundColor = toColour ? animColour : arrColour;
+                partitionBar.backgroundColor = animation[2] === animation[3] ? animColour : partitionColour ;
             }, i * sortSpeed);
         }
         else if (action === 'swap') {
             setTimeout(() => {
-                const [_, barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] = animation;
-                const barOne = arrBars[barOneIdx].style;
-                const barTwo = arrBars[barTwoIdx].style;
+                const barOne = arrBars[animation[1]].style;
+                const newHeightOne = animation[2];
+                const barTwo = arrBars[animation[3]].style;
+                const newHeightTwo = animation[4];
                 barOne.height = `${newHeightOne}px`;
                 barTwo.height = `${newHeightTwo}px`;
-                // barTwo.backgroundColor  = PARTITION_COLOUR;
             }, i * sortSpeed);
         }
         else if (action === 'partitionMove') {
             setTimeout(() => {
-                const [_, oldIdx, newIdx] = animation;
-                arrBars[oldIdx].style.backgroundColor = arrColour;
-                arrBars[newIdx].style.backgroundColor = partitionColour;
+                const oldBar = arrBars[animation[1]].style;
+                const newBar = arrBars[animation[2]].style;
+                oldBar.backgroundColor = arrColour;
+                newBar.backgroundColor = partitionColour;
             }, i * sortSpeed);
         }
         else if (action === 'partitionStartEnd') {
             setTimeout(() => {
-                const [_, toColour, partitionIdx] = animation;
-                arrBars[partitionIdx].style.backgroundColor = toColour ? partitionColour : arrColour;
+                const toColour = animation[1];
+                const partitionBar = arrBars[animation[2]].style;
+                partitionBar.backgroundColor = toColour ? partitionColour : arrColour;
             }, i * sortSpeed);
         }
         else if (action === 'pivot') {
             setTimeout(() => {
-                const [_, toColour, pivotIdx] = animation;
-                arrBars[pivotIdx].style.backgroundColor = toColour ? pivotColour : arrColour;
+                const toColour = animation[1];
+                const pivotBar = arrBars[animation[2]].style;
+                pivotBar.backgroundColor = toColour ? pivotColour : arrColour;
             }, i * sortSpeed);
         }
     }
@@ -55,14 +61,14 @@ const quickSortAnimations = (arr, arrBars, setIsSorting) => {
         for (let i = 0; i < arrBars.length; i++) {
             arrBars[i].style.backgroundColor = sortedColour;
         }
-    }, (animations.length + 3) * sortSpeed);
+    }, (animations.length + speeds[1]) * sortSpeed);
 
     setTimeout(() => {
         for (let i = 0; i < arrBars.length; i++) {
             arrBars[i].style.backgroundColor = arrColour;
         }
         setIsSorting(false);
-    }, (animations.length + 10) * sortSpeed);
+    }, (animations.length + speeds[2]) * sortSpeed);
 };
 
 const quickSort = (arr, start, end, animations) => {

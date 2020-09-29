@@ -1,9 +1,8 @@
 import {arrColour, animColour, sortedColour} from '../utils/utils';
 
 
-const sortSpeed = 100;
-
-const insertionSortAnimations = (arr, arrBars, setIsSorting) => {
+const insertionSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
+    const sortSpeed = speeds[0];
     const animations = [];
     insertionSort(arr, animations);
 
@@ -15,9 +14,10 @@ const insertionSortAnimations = (arr, arrBars, setIsSorting) => {
 
         if (action === 'move') {
             setTimeout(() => {
-                const [_, barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] = animation;
-                const barOne = arrBars[barOneIdx].style;
-                const barTwo = arrBars[barTwoIdx].style;
+                const barOne = arrBars[animation[1]].style;
+                const newHeightOne = animation[2];
+                const barTwo = arrBars[animation[3]].style;
+                const newHeightTwo = animation[4];
                 barOne.height = `${newHeightOne}px`;
                 barTwo.height = `${newHeightTwo}px`;
                 const temp = barOne.backgroundColor;
@@ -27,9 +27,10 @@ const insertionSortAnimations = (arr, arrBars, setIsSorting) => {
         }
         else if (action === 'colour') {
             setTimeout(() => {
-                const [_, toColour, barIdx] = animation;
+                const toColour = animation[1];
+                const bar = arrBars[animation[2]].style;
                 const colour = toColour ? animColour : sortedColour;
-                arrBars[barIdx].style.backgroundColor = colour;
+                bar.backgroundColor = colour;
             }, i * sortSpeed);
         }
     }
@@ -39,7 +40,7 @@ const insertionSortAnimations = (arr, arrBars, setIsSorting) => {
             arrBars[i].style.backgroundColor = arrColour;
         }
         setIsSorting(false);
-    }, (animations.length + 7) * sortSpeed);
+    }, (animations.length + speeds[2]) * sortSpeed);
 };
 
 const insertionSort = (arr, animations) => {

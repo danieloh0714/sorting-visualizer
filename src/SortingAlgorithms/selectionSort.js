@@ -3,9 +3,9 @@ import {arrColour, animColour, sortedColour} from '../utils/utils';
 
 const rootColour = 'brown';
 const minIdxColour = 'gold';
-const sortSpeed = 100;
 
-const selectionSortAnimations = (arr, arrBars, setIsSorting) => {
+const selectionSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
+    const sortSpeed = speeds[0];
     const animations = [];
     selectionSort(arr, animations);
 
@@ -15,23 +15,25 @@ const selectionSortAnimations = (arr, arrBars, setIsSorting) => {
 
         if (action === 'root') {
             setTimeout(() => {
-                const [_, toColour, idx] = animation;
-                arrBars[idx].style.backgroundColor = toColour ? rootColour : sortedColour;
+                const toColour = animation[1];
+                const bar = arrBars[animation[2]].style;
+                bar.backgroundColor = toColour ? rootColour : sortedColour;
             }, i * sortSpeed);
         }
         else if (action === 'compare') {
             setTimeout(() => {
-                const [_, toColour, idx] = animation;
-                const barStyle = arrBars[idx].style;
+                const toColour = animation[1];
+                const bar = arrBars[animation[2]].style;
                 const colour = toColour ? animColour : arrColour;
-                barStyle.backgroundColor = colour;
+                bar.backgroundColor = colour;
             }, i * sortSpeed);
         }
         else if (action === 'swap') {
             setTimeout(() => {
-                const [_, barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] = animation;
-                const barOne = arrBars[barOneIdx].style;
-                const barTwo = arrBars[barTwoIdx].style;
+                const barOne = arrBars[animation[1]].style;
+                const newHeightOne = animation[2];
+                const barTwo = arrBars[animation[3]].style;
+                const newHeightTwo = animation[4];
                 barOne.height = `${newHeightOne}px`;
                 barOne.backgroundColor = arrColour;
                 barTwo.height = `${newHeightTwo}px`;
@@ -40,10 +42,12 @@ const selectionSortAnimations = (arr, arrBars, setIsSorting) => {
         }
         else if (action === 'newMinIdx') {
             setTimeout(() => {
-                const [_, rootIdx, oldIdx, newIdx] = animation;
-                arrBars[oldIdx].style.backgroundColor = arrColour;
-                arrBars[newIdx].style.backgroundColor = minIdxColour;
-                arrBars[rootIdx].style.backgroundColor = rootColour;
+                const rootBar = arrBars[animation[1]].style;
+                const oldMinIdxBar = arrBars[animation[2]].style;
+                const newMinIdxBar = arrBars[animation[3]].style;
+                oldMinIdxBar.backgroundColor = arrColour;
+                newMinIdxBar.backgroundColor = minIdxColour;
+                rootBar.backgroundColor = rootColour;
             }, i * sortSpeed);
         }
     }
@@ -53,7 +57,7 @@ const selectionSortAnimations = (arr, arrBars, setIsSorting) => {
             arrBars[i].style.backgroundColor = arrColour;
         }
         setIsSorting(false);
-    }, (animations.length + 10) * sortSpeed);
+    }, (animations.length + speeds[2]) * sortSpeed);
 };
 
 const selectionSort = (arr, animations) => {

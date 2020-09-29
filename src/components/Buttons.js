@@ -3,9 +3,11 @@ import {Button, ButtonGroup} from '@material-ui/core';
 import {newArray, runSortingAlgorithm} from '../utils/utils';
 
 
-const Buttons = ({arr, setArr}) => {
+const Buttons = ({arr, setArr, toggleSize}) => {
     const [selectedAlgo, setSelectedAlgo] = useState('');
     const [isSorting, setIsSorting] = useState(false);
+    const speeds = [[10, 0, 100], [10, 30, 200], [50, 0, 25], [10, 30, 200], [10, 30, 200]];
+    
 
     const isSelected = (algo) => {
         if (algo === selectedAlgo) return 'outlined';
@@ -20,7 +22,15 @@ const Buttons = ({arr, setArr}) => {
             <Button variant={isSelected('insertion')} color='primary' disabled={isSorting} onClick={() => setSelectedAlgo('insertion')}>Insertion Sort</Button>
             <Button variant={isSelected('merge')} color='primary' disabled={isSorting} onClick={() => setSelectedAlgo('merge')}>Merge Sort</Button>
             <Button variant={isSelected('quick')} color='primary' disabled={isSorting} onClick={() => setSelectedAlgo('quick')}>Quick Sort</Button>
-            <Button variant='contained' color='secondary' disabled={selectedAlgo === '' || isSorting} onClick={() => runSortingAlgorithm(selectedAlgo, arr, setIsSorting)}>Sort</Button>
+            <Button
+                variant='contained'
+                color='secondary'
+                disabled={selectedAlgo === '' || isSorting}
+                onClick={() => runSortingAlgorithm(selectedAlgo, arr, setIsSorting, speeds)}
+            >
+                Sort
+            </Button>
+            <Button onClick={() => toggleSize()}>Size</Button>
         </ButtonGroup>
     )
 };

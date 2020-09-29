@@ -1,14 +1,14 @@
 import React from 'react';
 import {Container} from '@material-ui/core';
 
-const ArrayBars = ({arr}) => (
+const ArrayBars = ({arr, arrSize}) => (
     <Container>
         {
             arr.map((value, idx) => (
                 <div
                     className='array-bar'
                     key={idx}
-                    style={{height: `${value}px`}}
+                    style={{height: `${value}px`, width: arrSize === 'small' ? `2%` : `.5%`}}
                 >
                 </div>
             ))
