@@ -22,7 +22,7 @@ const TopButtons = ({arr, newArray, toggleSize, speeds}) => {
     };
 
     return (
-        <div style={{textAlign: 'center', marginTop: '2%'}}>
+        <div className='btns'>
             <ButtonGroup>
                 <NewArrayButton isSorting={isSorting} newArray={newArray} />
                 <ToggleSizeButton isSorting={isSorting} toggleSize={toggleSize} />

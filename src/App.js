@@ -22,10 +22,10 @@ const App = () => {
     };
 
     return (
-        <>
+        <div>
             <Buttons arr={arr} newArray={newArray} toggleSize={toggleSize} speeds={speeds} />
             <ArrayBars arr={arr} arrSize={arrSize} />
-        </>
+        </div>
     );
 };
 

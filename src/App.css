@@ -1,15 +1,16 @@
-#bars {
-  /* position: absolute; */
-  position: static;
+.bars {
+  position: absolute;
+  bottom: 0;
   width: 100%;
-  margin-top: 4%;
-  height: 450px;
   text-align: center;
-  /* justify-content: center; */
 }
 
 .array-bar {
-  background-color: navy;
   display: inline-block;
   margin: 1px;
+}
+
+.btns {
+  text-align: center;
+  margin-top: 3%;
 }

@@ -1,18 +1,18 @@
 import React from 'react';
 
+import {arrColour} from '../utils/utils';
+
 
 const ArrayBars = ({arr, arrSize}) => (
-    <div id='bars'>
-        {
-            arr.map((value, idx) => (
+    <div className='bars'>
+        {arr.map((value, idx) => (
                 <div
-                    class='array-bar'
+                    className='array-bar'
                     key={idx}
-                    style={{height: `${value}px`, width: arrSize === 20 ? '2%' : '.5%'}}
+                    style={{backgroundColor: arrColour, height: `${value}px`, width: arrSize === 20 ? '2%' : '.5%'}}
                 >
                 </div>
-            ))
-        }
+        ))}
     </div>
 );
 
