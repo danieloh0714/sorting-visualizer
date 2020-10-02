@@ -30,8 +30,8 @@ const runSelectedAlgo = (selectedAlgo, arr, setIsSorting, speeds) => {
     }
 };
 
-const speedsSlow = [[100, 0, 5], [100, 0, 5], [200, 0, 5], [100, 0, 5], [100, 0, 5]];
-const speedsFast = [[10, 0, 100], [10, 30, 200], [20, 0, 25], [10, 30, 200], [10, 30, 200]];
+const speedsSlow = [[100, 0, 5], [100, 2, 7], [200, 0, 5], [100, 2, 7], [100, 2, 7]];
+const speedsFast = [[10, 0, 100], [10, 30, 130], [20, 0, 50], [10, 30, 130], [10, 30, 130]];
 
 const arrColour = 'navy';
 const animColour = 'pink';
