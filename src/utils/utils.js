@@ -5,28 +5,28 @@ import {mergeSortAnimations} from '../sortingAlgorithms/mergeSort';
 import {quickSortAnimations} from '../sortingAlgorithms/quickSort';
 
 
-const newArray = (arrSize) => (
-    Array.from({length: arrSize === 'few' ? 20 : 100}, () => Math.floor(Math.random() * (100 - 5 + 1) * 5))
+const generateArray = (arrSize) => (
+    Array.from({length: arrSize === 'few' ? 20 : 120}, () => Math.floor(Math.random() * (100 - 5 + 1) * 5))
 );
 
-const runSortingAlgorithm = (sortingAlgorithm, arr, setIsSorting, sortSpeeds) => {
+const runSortingAlgorithm = (selectedAlgo, arr, setIsSorting, speeds) => {
     const arrBars = document.getElementsByClassName('array-bar');
     setIsSorting(true);
 
-    if (sortingAlgorithm === 'bubble') {
-        bubbleSortAnimations(arr, arrBars, setIsSorting, sortSpeeds[0]);
+    if (selectedAlgo === 'b') {
+        bubbleSortAnimations(arr, arrBars, setIsSorting, speeds[0]);
     }
-    else if (sortingAlgorithm === 'selection') {
-        selectionSortAnimations(arr, arrBars, setIsSorting, sortSpeeds[1]);
+    else if (selectedAlgo === 's') {
+        selectionSortAnimations(arr, arrBars, setIsSorting, speeds[1]);
     }
-    else if (sortingAlgorithm === 'insertion') {
-        insertionSortAnimations(arr, arrBars, setIsSorting, sortSpeeds[2]);
+    else if (selectedAlgo === 'i') {
+        insertionSortAnimations(arr, arrBars, setIsSorting, speeds[2]);
     }
-    else if (sortingAlgorithm === 'merge') {
-        mergeSortAnimations(arr, arrBars, setIsSorting, sortSpeeds[3]);
+    else if (selectedAlgo === 'm') {
+        mergeSortAnimations(arr, arrBars, setIsSorting, speeds[3]);
     }
-    else if (sortingAlgorithm === 'quick') {
-        quickSortAnimations(arr, arrBars, setIsSorting, sortSpeeds[4]);
+    else if (selectedAlgo === 'q') {
+        quickSortAnimations(arr, arrBars, setIsSorting, speeds[4]);
     }
 };
 
@@ -34,4 +34,7 @@ const arrColour = 'navy';
 const animColour = 'pink';
 const sortedColour = 'greenyellow';
 
-export {newArray, runSortingAlgorithm, arrColour, animColour, sortedColour};
+const speedsFew = [[100, 0, 5], [100, 0, 5], [200, 0, 5], [100, 0, 5], [100, 0, 5]];
+const speedsMany = [[10, 0, 100], [10, 30, 200], [50, 0, 25], [10, 30, 200], [10, 30, 200]];
+
+export {generateArray, runSortingAlgorithm, speedsFew, speedsMany, arrColour, animColour, sortedColour};
