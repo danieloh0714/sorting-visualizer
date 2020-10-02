@@ -1,33 +1,30 @@
 import React, {useState} from 'react';
 
 import './App.css';
-import TopButtons from './components/buttons/TopButtons';
+import Buttons from './components/buttons/Buttons';
 import ArrayBars from './components/ArrayBars';
-import ToggleSizeButton from './components/buttons/ToggleSizeButton';
-import {generateArray, speedsFew, speedsMany} from './utils/utils';
+import {generateArray, speedsSlow, speedsFast} from './utils/utils';
 
 
 const App = () => {
     const [arr, setArr] = useState(generateArray(20));
     const [arrSize, setArrSize] = useState(20);
-    const [isSorting, setIsSorting] = useState(false);
-    const [speeds, setSpeeds] = useState(speedsFew);
-
-    const toggleSize = () => {
-        setArrSize(arrSize === 20 ? 120 : 20);
-        setSpeeds(arrSize === 20 ? speedsMany : speedsFew);
-        setArr(generateArray(arrSize === 20 ? 120 : 20));
-    };
+    const [speeds, setSpeeds] = useState(speedsSlow);
 
     const newArray = () => {
         setArr(generateArray(arrSize));
     };
 
+    const toggleSize = () => {
+        setArrSize(arrSize === 20 ? 120 : 20);
+        setSpeeds(arrSize === 20 ? speedsFast : speedsSlow);
+        setArr(generateArray(arrSize === 20 ? 120 : 20));
+    };
+
     return (
         <>
-            <TopButtons arr={arr} newArray={newArray} speeds={speeds} isSorting={isSorting} setIsSorting={setIsSorting} />
+            <Buttons arr={arr} newArray={newArray} toggleSize={toggleSize} speeds={speeds} />
             <ArrayBars arr={arr} arrSize={arrSize} />
-            <ToggleSizeButton isSorting={isSorting} toggleSize={toggleSize} />
         </>
     );
 };

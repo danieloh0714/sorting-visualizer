@@ -30,11 +30,11 @@ const runSelectedAlgo = (selectedAlgo, arr, setIsSorting, speeds) => {
     }
 };
 
-const speedsFew = [[100, 0, 5], [100, 0, 5], [200, 0, 5], [100, 0, 5], [100, 0, 5]];
-const speedsMany = [[10, 0, 100], [10, 30, 200], [50, 0, 25], [10, 30, 200], [10, 30, 200]];
+const speedsSlow = [[100, 0, 5], [100, 0, 5], [200, 0, 5], [100, 0, 5], [100, 0, 5]];
+const speedsFast = [[10, 0, 100], [10, 30, 200], [20, 0, 25], [10, 30, 200], [10, 30, 200]];
 
 const arrColour = 'navy';
 const animColour = 'pink';
 const sortedColour = 'greenyellow';
 
-export {generateArray, runSelectedAlgo, speedsFew, speedsMany, arrColour, animColour, sortedColour};
+export {generateArray, runSelectedAlgo, speedsSlow, speedsFast, arrColour, animColour, sortedColour};
