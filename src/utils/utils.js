@@ -6,10 +6,10 @@ import {quickSortAnimations} from '../sortingAlgorithms/quickSort';
 
 
 const generateArray = (arrSize) => (
-    Array.from({length: arrSize === 'few' ? 20 : 120}, () => Math.floor(Math.random() * (100 - 5 + 1) * 5))
+    Array.from({length: arrSize}, () => Math.floor(Math.random() * (100 - 5 + 1) * 5))
 );
 
-const runSortingAlgorithm = (selectedAlgo, arr, setIsSorting, speeds) => {
+const runSelectedAlgo = (selectedAlgo, arr, setIsSorting, speeds) => {
     const arrBars = document.getElementsByClassName('array-bar');
     setIsSorting(true);
 
@@ -30,11 +30,11 @@ const runSortingAlgorithm = (selectedAlgo, arr, setIsSorting, speeds) => {
     }
 };
 
+const speedsFew = [[100, 0, 5], [100, 0, 5], [200, 0, 5], [100, 0, 5], [100, 0, 5]];
+const speedsMany = [[10, 0, 100], [10, 30, 200], [50, 0, 25], [10, 30, 200], [10, 30, 200]];
+
 const arrColour = 'navy';
 const animColour = 'pink';
 const sortedColour = 'greenyellow';
 
-const speedsFew = [[100, 0, 5], [100, 0, 5], [200, 0, 5], [100, 0, 5], [100, 0, 5]];
-const speedsMany = [[10, 0, 100], [10, 30, 200], [50, 0, 25], [10, 30, 200], [10, 30, 200]];
-
-export {generateArray, runSortingAlgorithm, speedsFew, speedsMany, arrColour, animColour, sortedColour};
+export {generateArray, runSelectedAlgo, speedsFew, speedsMany, arrColour, animColour, sortedColour};

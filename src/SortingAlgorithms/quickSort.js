@@ -6,7 +6,6 @@ const partitionColour = 'gold';
 
 const quickSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
     const sortSpeed = speeds[0];
-
     const animations = [];
     quickSort(arr, 0, arr.length - 1, animations);
 

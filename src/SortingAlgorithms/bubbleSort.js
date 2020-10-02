@@ -3,7 +3,6 @@ import {arrColour, animColour, sortedColour} from '../utils/utils';
 
 const bubbleSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
     const sortSpeed = speeds[0];
-
     const animations = [];
     bubbleSort(arr, animations);
 

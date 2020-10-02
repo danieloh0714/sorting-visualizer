@@ -3,7 +3,6 @@ import {arrColour, animColour, sortedColour} from '../utils/utils';
 
 const mergeSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
     const sortSpeed = speeds[0];
-
     const animations = [];
     const auxArr = arr.slice();
     mergeSort(arr, 0, arr.length - 1, auxArr, animations);
