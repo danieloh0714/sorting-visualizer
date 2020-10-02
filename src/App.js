@@ -9,18 +9,18 @@ import {newArray} from './utils/utils';
 
 
 const App = () => {
-    const [arrSize, setArrSize] = useState('small');
+    const [arrSize, setArrSize] = useState('few');
     const [arr, setArr] = useState(newArray(arrSize));
 
     const toggleSize = () => {
-        setArrSize(arrSize === 'small' ? 'large' : 'small');
-        setArr(newArray(arrSize));
+        setArrSize(arrSize === 'few' ? 'many' : 'few');
+        setArr(newArray(arrSize === 'few' ? 'many' : 'few'));
     };
 
     return (
         <Container>
             <Title>Sorting Visualizer</Title>
-            <Buttons arr={arr} setArr={setArr} toggleSize={toggleSize} />
+            <Buttons arr={arr} setArr={setArr} arrSize={arrSize} toggleSize={toggleSize} />
             <ArrayBars arr={arr} arrSize={arrSize} />
         </Container>
     );

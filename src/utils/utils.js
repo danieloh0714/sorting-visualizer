@@ -6,7 +6,7 @@ import {quickSortAnimations} from '../sortingAlgorithms/quickSort';
 
 
 const newArray = (arrSize) => (
-    Array.from({length: arrSize === 'small' ? 20 : 100}, () => Math.floor(Math.random() * (100 - 5 + 1) * 5))
+    Array.from({length: arrSize === 'few' ? 20 : 100}, () => Math.floor(Math.random() * (100 - 5 + 1) * 5))
 );
 
 const runSortingAlgorithm = (sortingAlgorithm, arr, setIsSorting, sortSpeeds) => {

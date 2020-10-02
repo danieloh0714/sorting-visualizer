@@ -8,7 +8,7 @@ const ArrayBars = ({arr, arrSize}) => (
                 <div
                     className='array-bar'
                     key={idx}
-                    style={{height: `${value}px`, width: arrSize === 'small' ? `2%` : `.5%`}}
+                    style={{height: `${value}px`, width: arrSize === 'few' ? `2%` : `.5%`}}
                 >
                 </div>
             ))
