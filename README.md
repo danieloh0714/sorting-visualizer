@@ -1,5 +1,5 @@
 # Sorting Visualizer
-I created a sorting visualier that visualizes five common sorting algorithms: bubble, selection, insertion, merge, and quick.  
+I created a sorting visualizer that visualizes five common sorting algorithms: bubble, selection, insertion, merge, and quick.  
 https://sorting-vis.web.app/
 
 ## 
