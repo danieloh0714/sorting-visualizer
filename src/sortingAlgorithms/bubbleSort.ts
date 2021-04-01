@@ -1,9 +1,8 @@
-import {arrColour, animColour, sortedColour} from '../utils/utils';
+import { animColour, arrColour, sortedColour } from '../utils/utils';
 
-
-const bubbleSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
+const bubbleSortAnimations = (arr: Array<number>, arrBars: any, setIsSorting: any, speeds: Array<number>) => {
     const sortSpeed = speeds[0];
-    const animations = [];
+    const animations: Array<any> = [];
     bubbleSort(arr, animations);
 
     for (let i = 0; i < animations.length; i++) {
@@ -52,7 +51,7 @@ const bubbleSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
     }, (animations.length + speeds[2]) * sortSpeed);
 };
 
-const bubbleSort = (arr, animations) => {
+const bubbleSort = (arr: Array<number>, animations: Array<any>) => {
     let isSorted = false;
 
     for (let i = 0; i < arr.length; i++) {
@@ -80,4 +79,4 @@ const bubbleSort = (arr, animations) => {
     }
 };
 
-export {bubbleSortAnimations};
+export { bubbleSortAnimations };

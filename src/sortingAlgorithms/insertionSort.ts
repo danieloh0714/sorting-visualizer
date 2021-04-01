@@ -1,9 +1,8 @@
 import {arrColour, animColour, sortedColour} from '../utils/utils';
 
-
-const insertionSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
+const insertionSortAnimations = (arr: Array<number>, arrBars: any, setIsSorting: any, speeds: Array<number>) => {
     const sortSpeed = speeds[0];
-    const animations = [];
+    const animations: Array<any> = [];
     insertionSort(arr, animations);
 
     arrBars[0].style.backgroundColor = sortedColour;
@@ -43,7 +42,7 @@ const insertionSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
     }, (animations.length + speeds[2]) * sortSpeed);
 };
 
-const insertionSort = (arr, animations) => {
+const insertionSort = (arr: Array<number>, animations: Array<any>) => {
     for (let i = 1; i < arr.length; i++) {
         let j = i;
         animations.push(['colour', true, j]);

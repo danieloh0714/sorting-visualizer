@@ -1,9 +1,13 @@
+import { Button } from '@material-ui/core';
 import React from 'react';
 
-import {Button} from '@material-ui/core';
+interface Props {
+    isSorting: boolean;
+    setSelectedAlgo: any;
+    isSelected: any;
+};
 
-
-const SortAlgoButtons = ({isSorting, setSelectedAlgo, isSelected}) => (
+const SortAlgoButtons: React.FC<Props> = ({ isSorting, setSelectedAlgo, isSelected }) => (
     <>
         <Button variant={isSelected('b')} color='primary' disabled={isSorting} onClick={() => setSelectedAlgo('b')}>Bubble Sort</Button>
         <Button variant={isSelected('s')} color='primary' disabled={isSorting} onClick={() => setSelectedAlgo('s')}>Selection Sort</Button>

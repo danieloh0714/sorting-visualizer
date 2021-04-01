@@ -1,25 +1,28 @@
-import React, {useState} from 'react';
-
-import {ButtonGroup} from '@material-ui/core';
+import { ButtonGroup } from '@material-ui/core';
+import React, { useState } from 'react';
+import { runSelectedAlgo } from '../../utils/utils';
 import NewArrayButton from './NewArrayButton';
-import ToggleSizeButton from './ToggleSizeButton';
 import SortAlgoButtons from './SortAlgoButtons';
 import SortButton from './SortButton';
-import {runSelectedAlgo} from '../../utils/utils';
+import ToggleSizeButton from './ToggleSizeButton';
 
+interface Props {
+    arr: Array<number>;
+    newArray: React.Dispatch<React.SetStateAction<any[]>>;
+    toggleSize: () => void;
+    speeds: Array<Array<number>>;
+};
 
-const TopButtons = ({arr, newArray, toggleSize, speeds}) => {
-    const [selectedAlgo, setSelectedAlgo] = useState('');
-    const [isSorting, setIsSorting] = useState(false);
+const TopButtons: React.FC<Props> = ({ arr, newArray, toggleSize, speeds }) => {
+    const [selectedAlgo, setSelectedAlgo] = useState<string>('');
+    const [isSorting, setIsSorting] = useState<boolean>(false);
 
-    const isSelected = (algo) => {
+    const isSelected = (algo: string) => {
         if (algo === selectedAlgo) return 'outlined';
         return 'contained';
     };
 
-    const sort = () => {
-        runSelectedAlgo(selectedAlgo, arr, setIsSorting, speeds);
-    };
+    const sort = () => runSelectedAlgo(selectedAlgo, arr, setIsSorting, speeds);
 
     return (
         <div className='btns'>

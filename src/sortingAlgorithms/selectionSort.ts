@@ -1,12 +1,11 @@
-import {arrColour, animColour, sortedColour} from '../utils/utils';
-
+import { animColour, arrColour, sortedColour } from '../utils/utils';
 
 const rootColour = 'brown';
 const minIdxColour = 'gold';
 
-const selectionSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
+const selectionSortAnimations = (arr: Array<number>, arrBars: any, setIsSorting: any, speeds: Array<number>) => {
     const sortSpeed = speeds[0];
-    const animations = [];
+    const animations: Array<any> = [];
     selectionSort(arr, animations);
 
     for (let i = 0; i < animations.length; i++) {
@@ -60,12 +59,12 @@ const selectionSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
     }, (animations.length + speeds[2]) * sortSpeed);
 };
 
-const selectionSort = (arr, animations) => {
+const selectionSort = (arr: Array<number>, animations: Array<any>) => {
     for (let i = 0; i < arr.length; i++) {
         animations.push(['root', true, i]);
 
         let minIdx = i;
-        
+
         for (let j = i + 1; j < arr.length; j++) {
             animations.push(['compare', true, j]);
             animations.push(['compare', false, j]);
@@ -74,7 +73,7 @@ const selectionSort = (arr, animations) => {
                 minIdx = j;
             }
         }
-        
+
         animations.push(['swap', i, arr[minIdx], minIdx, arr[i]]);
         const temp = arr[i];
         arr[i] = arr[minIdx];
@@ -84,4 +83,4 @@ const selectionSort = (arr, animations) => {
     }
 };
 
-export {selectionSortAnimations};
+export { selectionSortAnimations };

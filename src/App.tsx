@@ -1,19 +1,15 @@
-import React, {useState} from 'react';
-
+import React, { useState } from 'react';
 import './App.css';
-import Buttons from './components/buttons/Buttons';
 import ArrayBars from './components/ArrayBars';
-import {generateArray, speedsSlow, speedsFast} from './utils/utils';
-
+import Buttons from './components/buttons/Buttons';
+import { generateArray, speedsFast, speedsSlow } from './utils/utils';
 
 const App = () => {
-    const [arr, setArr] = useState(generateArray(20));
-    const [arrSize, setArrSize] = useState(20);
-    const [speeds, setSpeeds] = useState(speedsSlow);
+    const [arr, setArr] = useState<Array<number>>(generateArray(20));
+    const [arrSize, setArrSize] = useState<number>(20);
+    const [speeds, setSpeeds] = useState<Array<Array<number>>>(speedsSlow);
 
-    const newArray = () => {
-        setArr(generateArray(arrSize));
-    };
+    const newArray = () => setArr(generateArray(arrSize));
 
     const toggleSize = () => {
         setArrSize(arrSize === 20 ? 120 : 20);

@@ -1,16 +1,15 @@
-import {arrColour, animColour, sortedColour} from '../utils/utils';
+import { animColour, arrColour, sortedColour } from '../utils/utils';
 
-
-const mergeSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
+const mergeSortAnimations = (arr: Array<number>, arrBars: any, setIsSorting: any, speeds: Array<number>) => {
     const sortSpeed = speeds[0];
-    const animations = [];
+    const animations: Array<any> = [];
     const auxArr = arr.slice();
     mergeSort(arr, 0, arr.length - 1, auxArr, animations);
 
     for (let i = 0; i < animations.length; i++) {
         const animation = animations[i];
         const action = animation[0];
-        
+
         if (action === 'compare') {
             setTimeout(() => {
                 const toColour = animation[1];
@@ -52,7 +51,7 @@ const mergeSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
     }, (animations.length + speeds[2]) * sortSpeed);
 };
 
-const mergeSort = (arr, start, end, auxArr, animations) => {
+const mergeSort = (arr: Array<number>, start: number, end: number, auxArr: Array<any>, animations: Array<any>) => {
     if (start === end) return;
     const middle = Math.floor((start + end) / 2);
     mergeSort(auxArr, start, middle, arr, animations);
@@ -60,7 +59,7 @@ const mergeSort = (arr, start, end, auxArr, animations) => {
     merge(arr, start, middle, end, auxArr, animations);
 };
 
-const merge = (arr, start, middle, end, auxArr, animations) => {
+const merge = (arr: Array<number>, start: number, middle: number, end: number, auxArr: Array<any>, animations: Array<any>) => {
     let i = start, j = middle + 1, k = start;
 
     while (i <= middle && j <= end) {
@@ -102,4 +101,4 @@ const merge = (arr, start, middle, end, auxArr, animations) => {
     }
 };
 
-export {mergeSortAnimations};
+export { mergeSortAnimations };

@@ -1,12 +1,11 @@
-import {arrColour, animColour, sortedColour} from '../utils/utils';
-
+import { animColour, arrColour, sortedColour } from '../utils/utils';
 
 const pivotColour = 'orange';
 const partitionColour = 'gold';
 
-const quickSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
+const quickSortAnimations = (arr: Array<number>, arrBars: any, setIsSorting: any, speeds: Array<number>) => {
     const sortSpeed = speeds[0];
-    const animations = [];
+    const animations: Array<any> = [];
     quickSort(arr, 0, arr.length - 1, animations);
 
     for (let i = 0; i < animations.length; i++) {
@@ -19,7 +18,7 @@ const quickSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
                 const bar = arrBars[animation[2]].style;
                 const partitionBar = arrBars[animation[3]].style;
                 bar.backgroundColor = toColour ? animColour : arrColour;
-                partitionBar.backgroundColor = animation[2] === animation[3] ? animColour : partitionColour ;
+                partitionBar.backgroundColor = animation[2] === animation[3] ? animColour : partitionColour;
             }, i * sortSpeed);
         }
         else if (action === 'swap') {
@@ -70,7 +69,7 @@ const quickSortAnimations = (arr, arrBars, setIsSorting, speeds) => {
     }, (animations.length + speeds[2]) * sortSpeed);
 };
 
-const quickSort = (arr, start, end, animations) => {
+const quickSort = (arr: Array<number>, start: number, end: number, animations: Array<any>) => {
     if (start < end) {
         const partitionIdx = partition(arr, start, end, animations);
         quickSort(arr, start, partitionIdx - 1, animations);
@@ -78,7 +77,7 @@ const quickSort = (arr, start, end, animations) => {
     }
 };
 
-const partition = (arr, start, end, animations) => {
+const partition = (arr: Array<number>, start: number, end: number, animations: Array<any>) => {
     const pivot = arr[end];
     animations.push(['pivot', true, end]);
 
@@ -106,10 +105,10 @@ const partition = (arr, start, end, animations) => {
     arr[partitionIdx] = temp;
 
     animations.push(['partitionStartEnd', false, partitionIdx]);
-    
+
     animations.push(['pivot', false, end]);
 
     return partitionIdx;
 };
 
-export {quickSortAnimations};
+export { quickSortAnimations };

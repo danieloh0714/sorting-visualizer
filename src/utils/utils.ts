@@ -1,15 +1,12 @@
-import {bubbleSortAnimations} from '../sortingAlgorithms/bubbleSort';
-import {selectionSortAnimations} from '../sortingAlgorithms/selectionSort';
-import {insertionSortAnimations} from '../sortingAlgorithms/insertionSort';
-import {mergeSortAnimations} from '../sortingAlgorithms/mergeSort';
-import {quickSortAnimations} from '../sortingAlgorithms/quickSort';
+import { bubbleSortAnimations } from '../sortingAlgorithms/bubbleSort';
+import { insertionSortAnimations } from '../sortingAlgorithms/insertionSort';
+import { mergeSortAnimations } from '../sortingAlgorithms/mergeSort';
+import { quickSortAnimations } from '../sortingAlgorithms/quickSort';
+import { selectionSortAnimations } from '../sortingAlgorithms/selectionSort';
 
+const generateArray = (arrSize: number) => Array.from({ length: arrSize }, () => Math.floor(Math.random() * (100 - 5 + 1) * 5));
 
-const generateArray = (arrSize) => (
-    Array.from({length: arrSize}, () => Math.floor(Math.random() * (100 - 5 + 1) * 5))
-);
-
-const runSelectedAlgo = (selectedAlgo, arr, setIsSorting, speeds) => {
+const runSelectedAlgo = (selectedAlgo: string, arr: Array<number>, setIsSorting: any, speeds: Array<Array<number>>) => {
     const arrBars = document.getElementsByClassName('array-bar');
     setIsSorting(true);
 
@@ -37,4 +34,4 @@ const arrColour = 'navy';
 const animColour = 'pink';
 const sortedColour = 'greenyellow';
 
-export {generateArray, runSelectedAlgo, speedsSlow, speedsFast, arrColour, animColour, sortedColour};
+export { generateArray, runSelectedAlgo, speedsSlow, speedsFast, arrColour, animColour, sortedColour };
